@@ -49,16 +49,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                return;
-            }
-        }, SPLASH_TIME_OUT);
-
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
+
     }
 
 }

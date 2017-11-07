@@ -12,19 +12,22 @@ import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class LocationActivity extends AppCompatActivity {
 
     TextView tvlocation;
-    String TAG="LocatinActivity";
+    String TAG="LocationActivity";
     final int MY_PERMISSIONS_REQUEST_FINE_LOCATION=1;
     Location locationGPS, locationNet;
 
@@ -32,6 +35,11 @@ public class LocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitle("Location");
+        setTitle("Location");
 
         tvlocation = findViewById(R.id.locationTextView);
 
@@ -62,34 +70,39 @@ public class LocationActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             Log.i(TAG, "doInBackground(Params... params) called");
 
+            return locationToAddress("GPS",locationGPS) + "\n" + locationToAddress("Net",locationNet);
+        }
+
+        private String locationToAddress(String type, Location location) {
             StringBuilder sb = new StringBuilder();
-            sb.append("GPS Location" + locationGPS.toString() +"\n");
-            sb.append("Network Location" + locationNet.toString());
-
-
-
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss").format(new Date(location.getTime()));
+            sb.append(type +" location     "+dateTime + "\n");
             Geocoder geoCoder = new Geocoder(LocationActivity.this , Locale.getDefault()); //it is Geocoder
-            Log.e("ddd",String.valueOf(Geocoder.isPresent()));
             try {
-                List<Address> address = geoCoder.getFromLocation(40,116.3, 1);
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                List<Address> address = geoCoder.getFromLocation(latitude ,longitude, 1);
+;
+                Address addr = address.get(0);
+                String countryName = addr.getCountryName();
+                String admin = addr.getAdminArea();
+                String subadmin = addr.getSubAdminArea();
+                String locality = addr.getLocality();
+                String sublocality = addr.getSubLocality();
+                String thoroughfare = addr.getThoroughfare();
 
-                Log.e("ddd",address.size() + address.toString());
-                while (address.isEmpty()){
+                sb.append("latitude, longitude: "+latitude+","+longitude + "\n");
+                sb.append("country Name: "+countryName + "\n");
+                sb.append("admin: " + admin + ","+ subadmin + "\n");
+                sb.append("locality: "+locality+","+sublocality + "\n");
+                sb.append("thoroughfare: "+ thoroughfare + "\n");
+                sb.append("Address: "+addr.getAddressLine(0) + "\n");
 
-                    address = geoCoder.getFromLocation(40,116.3, 1);
-                }
-                int maxLines = address.get(0).getMaxAddressLineIndex();
-                for (int i = 0; i < maxLines; i++) {
-                    String addressStr = address.get(0).getAddressLine(i);
-                    sb.append(addressStr);
-                    sb.append("\n");
-                }
-                Log.e("ddd",sb.toString());
-                return sb.toString()+"1234";
             } catch (IOException e) {
                 e.printStackTrace();
+                return "Error get location from " + type +" \n";
             }
-            return "error location";
+            return sb.toString();
         }
 
         //onPostExecute方法用于在执行完后台任务后更新UI,显示结果
@@ -98,8 +111,6 @@ public class LocationActivity extends AppCompatActivity {
             Log.i(TAG, "onPostExecute(Result result) called");
             tvlocation.setText(result);;
         }
-
-
     }
 
 }

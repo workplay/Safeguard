@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/HSBCSafeguard.iml" filepath="$PROJECT_DIR$/HSBCSafeguard.iml" />
       <module fileurl="file://D:\Safeguard\HSBCSafeguard.iml" filepath="D:\Safeguard\HSBCSafeguard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Safeguard.iml" filepath="$PROJECT_DIR$/Safeguard.iml" />
+      <module fileurl="file://D:\HSBCSafeguard\Safeguard.iml" filepath="D:\HSBCSafeguard\Safeguard.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
