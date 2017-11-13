@@ -3,6 +3,7 @@ package com.hkust.swangbv.hsbcsafeguard;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import android.widget.Toast;
  */
 public class DashboardFragment extends Fragment {
 
-    ImageView ivcontact,ivlocation;
+    ImageView ivcontact,ivlocation,ivaccount ,ivvoiceprint;
 
 
     public DashboardFragment() {
@@ -52,6 +53,31 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //Update Account Information
+        ivaccount = myView.findViewById(R.id.imageviewAccount);
+        ivaccount.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Toast.makeText(getActivity(),"Update Account Information", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),UpdateAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Demonstrate VoicePrint
+        ivvoiceprint = myView.findViewById(R.id.imageviewVoice);
+        ivvoiceprint.setOnClickListener((e)->{
+            Toast.makeText(getActivity(),"Voice Print Recognition", Toast.LENGTH_SHORT).show();
+            String uri = "https://azure.microsoft.com/en-us/services/cognitive-services/speaker-recognition/#speaker-verification-form";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(uri));
+            //Intent intent = new Intent(getActivity(),VoicePrintActivity.class);
+            startActivity(intent);
+
+        });
+
+
 
         return myView;
     }

@@ -5,11 +5,22 @@
     android:layout_height="match_parent"
     tools:context="com.hkust.swangbv.hsbcsafeguard.DashboardFragment">
 
+    <ImageView
+        android:id="@+id/image_hsbc_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/hsbc_light" />
+
+
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
-
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageviewContact"
@@ -19,15 +30,31 @@
 
         <ImageView
             android:id="@+id/imageviewLocation"
-            android:layout_width="137dp"
-            android:layout_height="match_parent"
+            android:layout_width="141dp"
+            android:layout_height="141dp"
             android:src="@mipmap/ic_map" />
-
-
-
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/imageviewAccount"
+            android:layout_width="141dp"
+            android:layout_height="141dp"
+            android:src="@mipmap/ic_account" />
+
+        <ImageView
+            android:id="@+id/imageviewVoice"
+            android:layout_width="141dp"
+            android:layout_height="141dp"
+            android:src="@mipmap/ic_voice" />
+    </TableRow>
 
 </TableLayout>
 

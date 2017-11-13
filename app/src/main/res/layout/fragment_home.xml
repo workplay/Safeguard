@@ -13,6 +13,7 @@
         android:src="@drawable/hsbc_global_locations" />
 
     <TextView
+        android:layout_margin="35dp"
         android:layout_marginTop="30dp"
         android:id="@+id/tv_fragment_home"
         android:layout_width="match_parent"

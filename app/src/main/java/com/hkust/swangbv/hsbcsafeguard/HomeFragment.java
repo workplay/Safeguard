@@ -59,21 +59,23 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            try {
-                JSONObject obj = new JSONObject(result);
-                StringBuilder sb = new StringBuilder();
-                sb.append("Hi "+obj.getString("name")+",Your current information: \n \n");
-                sb.append("Name:  " + obj.getString("name")+"\n");
-                sb.append("PhoneNumber:  " + obj.getString("phoneNumber")+"\n");
-                sb.append("Email:  " + obj.getString("email")+"\n");
-                sb.append("Address:  " + obj.getString("residentialAddress")+"\n");
-                sb.append("Job:  " + obj.getString("job")+"\n");
+            if (result != null) {
+                try {
+                    JSONObject obj = new JSONObject(result);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Hi " + obj.getString("name") + ", your current information: \n \n");
+                    sb.append("Name:  " + obj.getString("name") + "\n");
+                    sb.append("PhoneNumber:  " + obj.getString("phoneNumber") + "\n");
+                    sb.append("Email:  " + obj.getString("email") + "\n");
+                    sb.append("Address:  " + obj.getString("residentialAddress") + "\n");
+                    sb.append("Job:  " + obj.getString("job") + "\n");
 
-                tv.setTextColor(Color.BLACK);
-                tv.setTextSize(20);
-                tv.setText(sb.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
+                    tv.setTextColor(Color.BLACK);
+                    tv.setTextSize(20);
+                    tv.setText(sb.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

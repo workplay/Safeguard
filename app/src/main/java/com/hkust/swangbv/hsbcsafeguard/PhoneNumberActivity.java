@@ -15,11 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PhoneNumberActivity extends AppCompatActivity {
 
-    TextView tv_phonestate;
+    TextView tv_currentSim;
+    Button bt_updatephone;
     final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE=1;
 
     @Override
@@ -32,8 +35,11 @@ public class PhoneNumberActivity extends AppCompatActivity {
         setTitle("Update Phone Number");
 
 
-        tv_phonestate = (TextView) findViewById(R.id.tvPhoneState);
-
+        tv_currentSim = (TextView) findViewById(R.id.tvCurrentSim);
+        bt_updatephone = findViewById(R.id.button_updatePhoneNumber);
+        bt_updatephone.setOnClickListener((button)->{
+            Toast.makeText(getBaseContext(), "Phone Number Updated",Toast.LENGTH_SHORT).show();
+        });
 
 
         if ( ContextCompat.checkSelfPermission( this, Manifest.permission.READ_PHONE_STATE ) != PackageManager.PERMISSION_GRANTED ) {
@@ -43,9 +49,9 @@ public class PhoneNumberActivity extends AppCompatActivity {
 
         TelephonyManager telemamanger = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         StringBuilder sb = new StringBuilder();
-        sb.append("Sim Serial Number  " + telemamanger.getSimSerialNumber());
+        sb.append( telemamanger.getSimSerialNumber());
 
-        tv_phonestate.setText(sb.toString());
+        tv_currentSim.setText(sb.toString());
 
     }
     @Override

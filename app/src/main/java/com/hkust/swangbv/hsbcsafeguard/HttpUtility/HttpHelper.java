@@ -98,7 +98,7 @@ public class HttpHelper {
         System.out.println(put.getResponse());
     }
 
-    private static void updateAccount(String id, String name, String phoneNumber, String email,
+    public static String updateAccount(String id, String name, String phoneNumber, String email,
                                       String residentialAddress, String correspondenceAddress, String job)
             throws IOException {
         PutUtility put = new PutUtility("http://" + domain + "/api/account/updateAccount");
@@ -133,7 +133,7 @@ public class HttpHelper {
         System.out.println(requestBody);
         put.setContentType("application/json;charset=UTF-8");
         put.setRequestBody(requestBody);
-        System.out.println(put.getResponse());
+        return put.getResponse();
     }
 
     private static void removeAccount(String id) throws IOException {

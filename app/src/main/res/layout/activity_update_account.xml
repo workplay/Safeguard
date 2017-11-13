@@ -1,9 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hkust.swangbv.hsbcsafeguard.UpdateAccountActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <TableRow
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvid"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/id" />
+
+        <EditText
+            android:id="@+id/etid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvname"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/etname"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvphone"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/phone" />
+
+        <EditText
+            android:id="@+id/etphone"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="phone" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvemail"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvaddress"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/address" />
+
+        <EditText
+            android:id="@+id/etaddress"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvpost"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/postaddress" />
+        <EditText
+            android:id="@+id/etpost"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvjob"
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:text="@string/job" />
+        <EditText
+            android:id="@+id/etjob"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:width="120dp"
+            android:text="Back" />
+
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Update" />
+    </TableRow>
+
+
+</TableLayout>
+

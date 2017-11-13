@@ -70,17 +70,36 @@ public class LocationActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             Log.i(TAG, "doInBackground(Params... params) called");
 
-            return locationToAddress("GPS",locationGPS) + "\n" + locationToAddress("Net",locationNet);
+            //Mock the location on emulator
+            return locationToAddress("GPS") + "\n" + locationToAddress("Net");
         }
 
-        private String locationToAddress(String type, Location location) {
+        private String locationToAddress(String type) {
             StringBuilder sb = new StringBuilder();
-            String dateTime = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss").format(new Date(location.getTime()));
-            sb.append(type +" location     "+dateTime + "\n");
+            /*
+                String dateTime = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss").format(new Date(location.getTime()));
+                sb.append(type +" location     "+dateTime + "\n");
+            */
             Geocoder geoCoder = new Geocoder(LocationActivity.this , Locale.getDefault()); //it is Geocoder
             try {
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
+                // Mock the location.
+                //double latitude = location.getLatitude();
+                //double longitude = location.getLongitude();
+
+                double latitude;
+                double longitude;
+
+
+                if (type.contentEquals("Net")) {
+                    sb.append("Net" + "\n");
+                    latitude = 39.9794287;
+                    longitude = 116.3039676;
+                } else {
+                    sb.append("GPS" + "\n");
+                    latitude = 39.97462152;
+                    longitude = 116.30403293;
+                }
+                Log.e("ddd",String.valueOf(latitude) +","+String.valueOf(longitude));
                 List<Address> address = geoCoder.getFromLocation(latitude ,longitude, 1);
 ;
                 Address addr = address.get(0);
@@ -91,18 +110,27 @@ public class LocationActivity extends AppCompatActivity {
                 String sublocality = addr.getSubLocality();
                 String thoroughfare = addr.getThoroughfare();
 
-                sb.append("latitude, longitude: "+latitude+","+longitude + "\n");
-                sb.append("country Name: "+countryName + "\n");
-                sb.append("admin: " + admin + ","+ subadmin + "\n");
-                sb.append("locality: "+locality+","+sublocality + "\n");
-                sb.append("thoroughfare: "+ thoroughfare + "\n");
-                sb.append("Address: "+addr.getAddressLine(0) + "\n");
+                sb.append("coordinate:     "+latitude+","+longitude + "\n");
+                sb.append("country Name:     "+countryName + "\n");
+                sb.append("admin:     " + admin + ","+ ignoreNull(subadmin) + "\n");
+                sb.append("locality:     "+locality+","+ ignoreNull(sublocality) + "\n");
+                sb.append("thoroughfare:     "+ thoroughfare + "\n");
+                sb.append("Address:     "+addr.getAddressLine(0) + "\n");
 
             } catch (IOException e) {
                 e.printStackTrace();
                 return "Error get location from " + type +" \n";
             }
             return sb.toString();
+        }
+
+
+        private String ignoreNull(String s){
+            if (s == null){
+                return "";
+            } else {
+                return s;
+            }
         }
 
         //onPostExecute方法用于在执行完后台任务后更新UI,显示结果

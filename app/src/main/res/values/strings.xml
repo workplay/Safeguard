@@ -9,4 +9,19 @@
     <string name="home_fragment">Home Fragment</string>
     <string name="notification_fragment">Notification Fragment</string>
     <string name="dashboeard_fragment">Dashboard Fragment</string>
+
+
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="postaddress">Post Address</string>
+    <string name="job">Job</string>
+
+    <string name="not_available">Not Available</string>
+
+    <string name="title_activity_voice_print">VoicePrintActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
